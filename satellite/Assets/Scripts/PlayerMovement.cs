@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         xAmplitude = mouseWorldPos.x;
         yAmplitude = mouseWorldPos.y;
 
-        if (currentState == State.enlarge)
+        if (currentState == State.enlarge)//set a minimum radius so it won't collide with the earth
         {
             if (xAmplitude <= 1.25f)
             {
@@ -130,58 +130,50 @@ public class PlayerMovement : MonoBehaviour
 
         switch (currentState)
         {
-            case State.normal:
-                transform.localScale = originalScale;
-                specialPowerTime = 8f;
-                speedUp = 1;
+            case State.normal://if it's normal state
+                transform.localScale = originalScale;//set the scale to normal scale
+                speedUp = 1;//set the speed to 1s
                 break;
             case State.enlarge:
-                transform.localScale = enlargeScale;
-                specialPowerTime -= Time.deltaTime;
+                transform.localScale = enlargeScale;//enlarge the moon
+                specialPowerTime -= Time.deltaTime;//set a timer
                 
                 break;
             case State.speedUp:
-                speedUp = 3;
+                speedUp = 3;//speed up the moon
                 specialPowerTime -= Time.deltaTime;
                 break;
             case State.duplicate:
-                duplicate.SetActive(true);
+                duplicate.SetActive(true);//activate the clone moon
                 specialPowerTime -= Time.deltaTime;
                 break;
             case State.shield:
-                shield.SetActive(true);
-                Invoke("goBackToNormal", 2f);
+                shield.SetActive(true);//activate the shield
+                Invoke("goBackToNormal", 2f);//deactivate it after 2 secs
                 break;
         }
 
         if (specialPowerTime <= 0)
         {
-            stateTransition(State.normal);
+            stateTransition(State.normal);//if time's up, go back to normal state
         }
 
 
     }
 
 
-    /*public void Enlarge()
-    {
-        transform.localScale = enlargeScale;
-        
-        Invoke("Shrink", enlargeTime);
-    }*/
-
 
     public void stateTransition(State targetState)
     {
-        currentState = targetState;
+        currentState = targetState;//transit to the state you put in
         speedUp = 1;
         transform.localScale = originalScale;
         duplicate.SetActive(false);
         shield.SetActive(false);
-        specialPowerTime = 8f;
+        specialPowerTime = 8f;//set a timer
     }
 
-    void goBackToNormal()
+    void goBackToNormal()//go back to normal state
     {
         currentState = State.normal;
         speedUp = 1;
@@ -192,39 +184,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    /*public void SetActivateDuplicate()
-    {
-        duplicate.SetActive(true);
-        Invoke("DeactivateDuplicate", duplicateTime);
-    }
-    
-    void DeactivateDuplicate()
-    {
-        duplicate.SetActive(false);
-    }
-
-    public void SpeedUp()
-    {
-        myManager.speedUp *= 3;
-        Invoke("SlowDown", speedUpTime);
-    }
-
-    void SlowDown()
-    {
-        myManager.speedUp /= 3;
-    }*/
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Enemy") // if collide with the enemy
-        {
-
-            //add score
-
-            
-        }
-    }
 
 
     float map(float value, float leftMin, float leftMax, float rightMin, float rightMax) //mapping function

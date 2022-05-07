@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         Invoke("SpawnNewEnemy", 1f); // wait 1 sec to let the player be familiar with the mechanic
 
-        InvokeRepeating("SpawnSpecialItems", 8f,8f);
+        InvokeRepeating("SpawnSpecialItems", 10f,10f); // spawn a special item every 8 secs
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnNewEnemy()
     {
-        timeGap = Random.Range(0.5f, 1.5f); //randomize the time gap
+        timeGap = Random.Range(1f, 2.5f); //randomize the time gap
         index = Random.Range(1, 5); //get a int number between 1~4
 
         GameObject enemy = Instantiate(enemyPrefab); // instantiate a new enemy

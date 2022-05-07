@@ -28,11 +28,7 @@ public class Earth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Player") // if collide with the player
-        {
-            life -= 1;
-        }
-        else if (collision.gameObject.tag == "Enemy") // if collide with the enemy
+        if (collision.gameObject.tag == "Enemy") // if collide with the enemy
         {
             life -= 1;
             Destroy(collision.gameObject); // destroy the enemy

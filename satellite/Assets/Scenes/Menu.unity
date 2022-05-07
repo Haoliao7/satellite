@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0082, y: 176}
+  m_AnchoredPosition: {x: 0.0082, y: 198}
   m_SizeDelta: {x: 758.4636, y: 364.3977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295630234
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.39997607, b: 0.3339622, a: 1}
+  m_Color: {r: 1, g: 0.9649872, b: 0.33333337, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Orbit
+  m_Text: Satellite
 --- !u!222 &295630235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -656,8 +656,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use the mouse to change the shape of your orbit. Press the left button
-    to speed up. Don't get hit by the cubes.
+  m_Text: 'Use the mouse to change the shape of your orbit. Press the left and right
+    buttons to speed up. Protect the earth from getting hit by the alien spaceships.
+
+
+    Get
+    special power from'
 --- !u!222 &1670371982
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -666,6 +670,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670371979}
   m_CullTransparentMesh: 1
+--- !u!1001 &1843396245
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3272364553279485631, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784567646, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_Name
+      value: Gravity_generator_LoD_0 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.91464716
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000461936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828315072784929150, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a6e6f938a252a34409ac1c5965ae523b, type: 3}
 --- !u!1 &1993628304
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +869,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9433962, g: 0.81615794, b: 0.28835884, a: 0}
+  m_BackGroundColor: {r: 0.11320752, g: 0.1130809, b: 0.112566724, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

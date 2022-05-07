@@ -34,11 +34,11 @@ public class enemyMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();//access its rigidbody
 
-        index = Random.Range(1, 4);
+        index = Random.Range(1, 4);//get a random number from 1~3
 
-        switch (index)
+        switch (index) // give it a different color according to its number
         {
             case 1:
                 shipBody.GetComponent<Renderer>().material.color = Color.blue;
@@ -49,13 +49,13 @@ public class enemyMovement : MonoBehaviour
                 break;
             case 3:
                 shipBody.GetComponent<Renderer>().material.color = Color.yellow;
-                player = GameObject.Find("Player");
-                randomPos = Random.Range(-Mathf.PI, Mathf.PI);
+                player = GameObject.Find("Player");//access player gameobject
+                randomPos = Random.Range(-Mathf.PI, Mathf.PI);//get a random pos because it will stay the orbit
                 break;
         }
 
 
-        //Invoke("StartMoving", timeBeforeMoving);//wait a certain amount of time and start moving
+       
 
     }
 
@@ -63,28 +63,11 @@ public class enemyMovement : MonoBehaviour
     void Update()
     {
 
-        /*if (transform.position.x >= 11 || transform.position.x <= -11)//if it's at the left or right side of the screen
-        {
-            warningSquare.GetComponent<Transform>().localScale = new Vector3(scaling, 1, 1);//enlarge the width of the warning rectangle
-        }
-
-
-        if (transform.position.y >= 7 || transform.position.y <= -7)//if it's at the top or bottom side of the screen
-        {
-            warningSquare.GetComponent<Transform>().localScale = new Vector3(1, scaling, 1);//enlarge the height of the warning rectangle
-        }
-
-        if (scaling <=50)
-        {
-            scaling += Time.deltaTime * scalingSpeed;//if it reachs 50, stop scaling
-            
-        }*/
-
         switch (index)
         {
             case 1:
-                var step = speed * Time.deltaTime; // calculate distance to move
-                transform.position = Vector3.MoveTowards(transform.position, earthPos, step);
+                var step = speed * Time.deltaTime; 
+                transform.position = Vector3.MoveTowards(transform.position, earthPos, step);//move toward the earth
 
                 if (transform.position.x < -15 || transform.position.x > 15 || transform.position.y > 9 || transform.position.y < -9)
                 {
@@ -95,11 +78,11 @@ public class enemyMovement : MonoBehaviour
 
             case 2:
                 
-                if (Vector3.Distance(transform.position, target) < 0.01f)
+                if (Vector3.Distance(transform.position, target) < 0.01f)//if it reach its target
                 {
                     timer += Time.deltaTime;
 
-                    if(timer >= timeGap)
+                    if(timer >= timeGap) //shoot a laser every specific amount of time
                     {
                         Shoot();
                         timer = 0;
@@ -115,7 +98,7 @@ public class enemyMovement : MonoBehaviour
             break;
 
             case 3:
-                if (onTrack)
+                if (onTrack)//if it stay on the orbit
                 {
                     
 
@@ -124,14 +107,14 @@ public class enemyMovement : MonoBehaviour
                     float z = transform.position.z;
                     transform.position = new Vector3(x, y, z);
 
-                    countDown -= Time.deltaTime;
+                    countDown -= Time.deltaTime;//start the countdown
 
 
-                    gameObject.GetComponentInChildren<TextMeshPro>().text = Mathf.Round(countDown).ToString();
+                    gameObject.GetComponentInChildren<TextMeshPro>().text = Mathf.Round(countDown).ToString();//display the countdown text
 
                     if(countDown <= 0)
                     {
-                        Explode();
+                        Explode();//explode when the countdown comes to 0
                     }
 
                     
@@ -139,8 +122,8 @@ public class enemyMovement : MonoBehaviour
                 }
                 else
                 {
-                    var step3 = speed * Time.deltaTime; // calculate distance to move
-                    transform.position = Vector3.MoveTowards(transform.position, earthPos, step3);
+                    var step3 = speed * Time.deltaTime; 
+                    transform.position = Vector3.MoveTowards(transform.position, earthPos, step3);// move toward to the earth
                 }
                
 
@@ -157,7 +140,7 @@ public class enemyMovement : MonoBehaviour
 
     void GetTarget()
     {
-        if (transform.position.x >= 11)
+        if (transform.position.x >= 11)//get a target according to which side of the screen it's on
         {
             target = new Vector3(Random.Range(3, 7.5f), Random.Range(-4, 4), 0);
         }
@@ -180,48 +163,45 @@ public class enemyMovement : MonoBehaviour
 
     void MoveIn()
     {
-        var step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target, step);
+        var step = speed * Time.deltaTime; 
+        transform.position = Vector3.MoveTowards(transform.position, target, step);//move toward its target
     }
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab);
+        GameObject bullet = Instantiate(bulletPrefab);//spawn a bullet at its position
         bullet.transform.position = target;
     }
 
 
     void Explode()
     {
-        GameObject explposion = Instantiate(explosionPrefab);
-        explposion.transform.position = gameObject.transform.position;
-        Destroy(gameObject);
+        GameObject explposion = Instantiate(explosionPrefab);//spawn the explosion prefab
+        explposion.transform.position = gameObject.transform.position;//set its position to this gameobject's position
+        Destroy(gameObject);//destroy it
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player")//if it collides with the player
         {
-            Destroy(gameObject);
+            Destroy(gameObject);//destroy it
         }
-
-       
-        
 
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Circle" && index == 3)
+        if (other.gameObject.name == "Circle" && index == 3)//if it collide with the orbit
         {
-            onTrack = true;
+            onTrack = true;//stay on it
         }
 
-        if(other.gameObject.name == "Shield")
+        if(other.gameObject.name == "Shield")//if it collide with the shield
         {
-            Destroy(gameObject);
+            Destroy(gameObject);//destroy it
         }
 
     }

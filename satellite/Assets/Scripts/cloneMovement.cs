@@ -26,9 +26,9 @@ public class cloneMovement : MonoBehaviour
         xAmplitude = mouseWorldPos.x;
         yAmplitude = mouseWorldPos.y;
 
-        if (xAmplitude <= 0.5f)
+        if (xAmplitude <= 0.5f) // if its radius is smaller than 0.5
         {
-            xAmplitude = 0.5f;
+            xAmplitude = 0.5f; //Don't get smaller
         }
         if (yAmplitude <= 0.5f)
         {
